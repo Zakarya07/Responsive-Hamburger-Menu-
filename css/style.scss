@@ -1,0 +1,177 @@
+// Import Sass file(s)
+@import 'variables', 'config';
+
+// General Code
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Helvetica';
+
+    @include mobile_view {
+        overflow-x: hidden;
+    }
+}
+
+// -------------------------- Header
+header {
+
+    height: 100vh;
+    background-image: url("../Images/header_bg.jpg");
+    background-size: cover;
+    background-position: center bottom;
+
+    //------------ Navbar
+    nav {
+        height: 8vh;
+        background-color: rgba(236, 236, 236, 0);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: $padding $padding*2;
+        transition: background-color .25s linear;
+
+        &:hover {
+            background-color: rgb(236, 236, 236);
+        }
+
+        @include mobile_view {
+            background-color: rgb(240, 235, 235);
+            justify-content: space-between;
+        }
+
+        // Logo contain
+        h1#logo {
+            font-size: 2.25em;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            cursor: default;
+
+            @include mobile_view {}
+
+            img {
+                width: 25%;
+
+                @include mobile_view {}
+            }
+
+            @include mobile_view {
+                color: black;
+            }
+        }
+
+        // unordered list <ul> element
+        ul {
+            display: flex;
+            width: 30%;
+            justify-content: space-around;
+            align-items: center;
+
+            // list item <li> elements
+            li {
+                // links tag of nav bar
+                list-style: none;
+                padding: $padding/5;
+                transition: transform .2s linear, background-color .25s, padding .5s linear;
+                
+                &:hover {
+                    transform: scale(1.1);
+                    background-color: black;
+                    color: white;
+                }
+                
+                @include mobile_view {
+                    opacity: 0;
+                    &:hover{
+                        background:none;
+
+                    }
+                }
+
+
+                a {
+                    text-decoration: none;
+                    font-weight: bold;
+                    font-size: 1.25em;
+                    padding: $padding/5;
+                    color: black;
+                    transition: color .1s .3s;
+
+                    @include mobile_view {
+                        letter-spacing: 2px;
+                        font-size: 1.5em;
+                        color: whitesmoke;
+                    }
+
+                    &:hover {
+                        color: white;
+                       
+                    }
+                }
+            }
+
+            @include mobile_view {
+                position: absolute;
+                right: 0;
+                top: 8vh;
+                height: 92vh;
+                background-color: rgb(115, 136, 136);
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                transition: transform 1s;
+                transform: translateX(100%);
+            }
+        }
+
+        // Div that contains the burger icon
+        div.burger_container {
+            padding: .5em;
+            display: none;
+
+            i {
+                font-size: 2em;
+                transition: all 2s;
+            }
+
+            @include mobile_view {
+                display: block;
+                color: black;
+                cursor: pointer;
+            }
+        }
+
+    }
+
+    h1.header_title {
+        margin-top: 25%;
+        color: lavender;
+        text-align: center;
+        font-size: 3em;
+    }
+}
+
+
+// Class to add in JavaScript
+ul.nav_active {
+    transform: translateX(0%);
+}
+
+@keyframes appearFade{
+    from{
+        opacity: 0;
+        transform: translateX(10vw);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0vw);
+    }
+}
